@@ -1,3 +1,11 @@
 rootProject.name = 'sample-micro-service-gradle'
-include 'service'
+include 'client', 'service'
 
+buildscript {
+    apply from: "$rootDir/gradle/repos.gradle", to: buildscript
+    dependencies {
+        classpath "gradle.plugin.net.vivin:gradle-semantic-build-versioning:4.0.0"
+    }
+}
+
+apply plugin: "net.vivin.gradle-semantic-build-versioning"

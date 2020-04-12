@@ -1,4 +1,4 @@
-package com.example.service.sample;
+package com.example.client.model;
 
 import lombok.Getter;
 

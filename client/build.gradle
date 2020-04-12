@@ -3,23 +3,42 @@ plugins {
     id 'io.spring.dependency-management' version '1.0.9.RELEASE'
 }
 
+apply plugin: 'java-library'
+
+archivesBaseName = "sample-client"
+
+apply from: "$rootDir/gradle/artifact.gradle"
+
+bootJar {
+    enabled = false
+}
+
+jar {
+    enabled = true
+}
+
+bootRun {
+    enabled = false
+}
+
 dependencies {
-    implementation project(':client')
-    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+    implementation 'org.springframework.boot:spring-boot-starter'
     implementation 'org.springframework.boot:spring-boot-starter-web'
-    implementation 'org.apache.commons:commons-lang3:3.10'
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
     testImplementation('org.springframework.boot:spring-boot-starter-test') {
         exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
     }
     testImplementation("net.javacrumbs.json-unit:json-unit-assertj:+")
-    testImplementation("io.rest-assured:rest-assured:4.2.0")
-    testImplementation("io.rest-assured:json-path:4.2.0")
-    testImplementation("io.rest-assured:xml-path:4.2.0")
+    testImplementation 'commons-io:commons-io:2.6'
+    testImplementation 'org.springframework.cloud:spring-cloud-starter-contract-stub-runner'
+}
+dependencyManagement {
+    imports {
+        mavenBom "org.springframework.cloud:spring-cloud-dependencies:Hoxton.SR3"
+    }
 }
 
 test {
     useJUnitPlatform()
 }
-
