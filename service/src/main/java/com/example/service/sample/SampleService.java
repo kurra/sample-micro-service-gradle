@@ -1,8 +1,8 @@
 package com.example.service.sample;
 
-import java.util.List;
+import com.example.client.model.SampleRequest;
+import com.example.client.model.SampleResponse;
 import java.util.Optional;
-import java.util.stream.Collectors;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -22,15 +22,11 @@ public class SampleService {
 
   public Optional<SampleResponse> get(final String id) {
 
-    return sampleRepository.findById(id).map(SampleResponse::new);
-  }
-
-  public List<SampleResponse> getAll() {
-
-    return sampleRepository.findAll()
-        .stream()
-        .map(SampleResponse::new)
-        .collect(Collectors.toList());
+    return sampleRepository.findById(id).map(sample -> SampleResponse.builder()
+        .id(sample.getId())
+        .name(sample.getName())
+        .build()
+    );
   }
 
   public void delete(final String id) {

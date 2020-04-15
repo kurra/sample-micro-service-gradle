@@ -5,6 +5,8 @@ import static org.springframework.http.ResponseEntity.noContent;
 import static org.springframework.http.ResponseEntity.of;
 import static org.springframework.web.util.UriComponentsBuilder.fromPath;
 
+import com.example.client.model.SampleRequest;
+import com.example.client.model.SampleResponse;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -24,7 +26,6 @@ public class SampleController {
 
   @PostMapping
   public ResponseEntity<?> create(@RequestBody final SampleRequest sampleRequest) {
-    //TODO change this to created
     return created(fromPath("/sample/{id}").buildAndExpand(sampleService.create(sampleRequest)).toUri()).build();
   }
 

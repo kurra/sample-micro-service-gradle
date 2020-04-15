@@ -1,0 +1,17 @@
+spring:
+  main:
+    bannerMode: "OFF"
+    allow-bean-definition-overriding: true
+  jackson:
+    serialization:
+      INDENT_OUTPUT: true
+      WRITE_DATES_AS_TIMESTAMPS: false
+    deserialization:
+      FAIL_ON_UNKNOWN_PROPERTIES: false
+      USE_BIG_DECIMAL_FOR_FLOATS: true
+    default-property-inclusion: non_null
+
+serverHost: http://localhost:8080
+
+sample:
+  apiUrl: ${serverHost}/sample-micro-service/

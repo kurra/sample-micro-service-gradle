@@ -1,11 +1,32 @@
-plugins {
-    id 'java'
+apply plugin: 'base'
+
+allprojects {
+    buildscript {
+        apply from: "$rootDir/gradle/repos.gradle", to: buildscript
+    }
+    apply from: "$rootDir/gradle/repos.gradle"
 }
 
-group 'org.example'
-version '1.0-SNAPSHOT'
+subprojects {
 
-repositories {
-    mavenCentral()
+    apply plugin: 'java'
+
+    sourceCompatibility = '1.8'
+    targetCompatibility = '1.8'
+
+    defaultTasks 'build'
+
+    configurations {
+        compileOnly {
+            extendsFrom annotationProcessor
+        }
+    }
+
+    [compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
+
+    group = 'com.example'
+
+    version = rootProject.version
+    task allDeps(type: DependencyReportTask) {}
 }
 
