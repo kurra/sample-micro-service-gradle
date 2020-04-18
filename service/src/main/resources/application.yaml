@@ -43,3 +43,9 @@ management:
       base-path: /sample-micro-service/management
       exposure:
         include: health, info, prometheus
+
+springdoc:
+  api-docs:
+    path: /api-docs
+  swagger-ui:
+    path: /swagger-ui.html

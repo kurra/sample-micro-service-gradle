@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 @AllArgsConstructor
 public class SampleService {
 
-  private SampleRepository sampleRepository;
+  private final SampleRepository sampleRepository;
 
   public String create(final SampleRequest sampleRequest) {
 
