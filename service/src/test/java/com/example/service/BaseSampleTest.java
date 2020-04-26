@@ -17,13 +17,13 @@ import org.springframework.boot.web.server.LocalServerPort;
 @TestInstance(PER_CLASS)
 public class BaseSampleTest {
 
-  private static final String BASE_PATH = "sample-micro-service";
+  protected static final String BASE_PATH = "sample-micro-service";
   protected static final String MANAGEMENT_PATH = BASE_PATH + "/management";
   protected static final String SAMPLE_ENDPOINT_PATH = BASE_PATH + "/sample";
 
   @LocalServerPort
   private int port;
-  
+
   @Autowired
   protected SampleRepository sampleRepository;
 
